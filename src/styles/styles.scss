@@ -1,4 +1,4 @@
+@import './base/settings';
 @import './base/base';
-// @import url('../node_modules/font-awesome/css/font-awesome.css');
-$fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome";
+@import './components/header';
+@import './components/homepage';

@@ -16,8 +16,20 @@ module.exports = (env) => {
                 loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/
-            }, {
-                test: /.(ttf| s?css |otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+            },
+            {
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/',    // where the fonts will go
+                        publicPath: '../'       // override the default path
+                    }
+                }]
+            },  
+            {
+                test: /\.s?css$/,
                 use: CSSExtract.extract({
                     use: [
                         {
@@ -31,14 +43,7 @@ module.exports = (env) => {
                             options: {
                                 sourceMap: true
                             }
-                        }, {
-                            loader: 'file-loader',
-                            options: {
-                                name: '[name].[ext]',
-                                outputPath: 'fonts/',    // where the fonts will go
-                                publicPath: '../'       // override the default path
-                            }
-                        }
+                        }                                            
                     ]
                 })
             }]
